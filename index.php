@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ *
  * Plugin Index.
  *
  * @link              https://yukyhendiawan.com
@@ -26,9 +26,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Register admin menu.
  */
-require_once dirname( __FILE__ ) . '/admin/menu.php';
+require_once __DIR__ . '/admin/menu.php';
 
 /**
  * Register settings API.
  */
-require_once dirname( __FILE__ ) . '/admin/settings.php';
+require_once __DIR__ . '/admin/settings.php';

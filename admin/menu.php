@@ -1,4 +1,12 @@
 <?php
+/**
+ * Create a simple menu.
+ *
+ * @package     Yukyhendiawan
+ * @author      Yuky Hendiawan <yukyhendiawan123@gmail.com>
+ * @link        https://developer.wordpress.org/plugins/administration-menus/
+ * @since       1.0.0
+ */
 
 /**
  * Add a menu page.
@@ -49,8 +57,7 @@ function prefix_add_my_submenu_pages() {
 		'manage_options',                      // $capability
 		'submenu-2',                           // $menu_slug
 		'prefix_display_submenu_2'             // $callback
-	);    
-
+	);
 }
 add_action( 'admin_menu', 'prefix_add_my_submenu_pages' );
 
@@ -58,44 +65,31 @@ add_action( 'admin_menu', 'prefix_add_my_submenu_pages' );
  * Callback function for Submenu Page 1.
  */
 function prefix_display_submenu_1() {
-    // Check user capabilities.
+	// Check user capabilities.
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
 
-    /*
-    |--------------------------------------------------------------------------
-    | Settings API.
-    | The code below is the structure of the settings API.
-    |--------------------------------------------------------------------------
-    */    
-
-    /**
-     * Add error or update messages.
-     * Check if the user have submitted the settings.
-     * WordPress will add the "settings-updated" $_GET parameter to the url.
-     */
-	if ( isset( $_GET['settings-updated'] ) ) {
-		// Add settings saved message with the class of "updated".
-		add_settings_error(  
-            'store_messages',                      // $setting
-            'attr_notice_store_message',           // $code (ID attribute in HTML output)
-            __( 'Settings Saved', 'text-domain' ), // $message
-            'updated'                              // $type
-        );
-	}
+	/*
+	|--------------------------------------------------------------------------
+	| Settings API.
+	| The code below is the structure of the settings API.
+	|--------------------------------------------------------------------------
+	*/
 
 	// Show error or update messages ( registered by add_settings_error() ).
-	settings_errors( 'store_messages' );    
+	settings_errors( 'store_messages' );
+
 	?>
 	<div class="wrap">
 		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 		<form action="options.php" method="post">
 			<?php
-			// Output security fields for the registered setting "store". ( This should match the group name used in register_setting() )
+
+			// Output security fields for the registered setting "store". ( This should match the group name used in register_setting() ).
 			settings_fields( 'store' );
 
-            // Output setting sections and their fields ( registered by add_settings_section() and add_settings_field() ).
+			// Output setting sections and their fields ( registered by add_settings_section() and add_settings_field() ).
 			do_settings_sections( 'store' );
 
 			// Output Save Changes button.
