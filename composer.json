@@ -1,0 +1,48 @@
+{
+	"name": "yukyhendiwan/admin-options",
+	"type": "wordpress-plugin",
+	"description": "Simple WordPress plugin for API settings.",
+	"keywords": [
+		"WordPress",
+		"plugin"
+	],
+	"homepage": "https://github.com/yukyhendiawan/admin-options",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Contributors",
+			"homepage": "https://github.com/yukyhendiawan/admin-options/graphs/contributors"
+		}
+	],
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.7.2",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"wp-coding-standards/wpcs": "^3.1.0",
+		"phpcompatibility/php-compatibility": "^9.3",
+		"phpcompatibility/phpcompatibility-wp": "^2.1"
+	},
+	"prefer-stable" : true,
+	"scripts": {
+		"check-updates": "composer outdated",
+		"lint:wpcs": "./vendor/bin/phpcs --standard=phpcs.xml",
+		"lint:wpcs:fix": "./vendor/bin/phpcbf --standard=phpcs.xml --report-summary --report-source",
+		"check:php:compatibility:56+": "./vendor/bin/phpcs -p . --standard=phpcs.xml --extensions=php --ignore=*/vendor/*,*/node_modules/*",
+		"check:php:compatibility:74": "./vendor/bin/phpcs -p . --standard=phpcs.xml --runtime-set testVersion 7.4 --extensions=php --ignore=*/vendor/*,*/node_modules/*",
+		"check:php:compatibility:56-74": "./vendor/bin/phpcs -p . --standard=phpcs.xml --runtime-set testVersion 5.6-7.4 --extensions=php --ignore=*/vendor/*,*/node_modules/*",
+		"check:php:compatibility:wp:56+": "./vendor/bin/phpcs -p . --standard=phpcs.xml --extensions=php --ignore=*/vendor/*,*/node_modules/*",
+		"make-pot": "wp i18n make-pot . languages/_admin-options.pot"
+	},
+	"support": { 
+		"issues": "https://github.com/yukyhendiawan/admin-options/issues",
+		"source": "https://github.com/yukyhendiawan/admin-options"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
+		}
+	},
+	"extra": {
+        "phpcodesniffer-search-depth": 5
+    }
+}
